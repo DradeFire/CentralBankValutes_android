@@ -18,10 +18,16 @@ import com.example.cb_values_android.api.retrofit.json.ValuesJSON
 import com.example.cb_values_android.databinding.FragmentListOfValutsBinding
 import com.example.cb_values_android.fragments.adapters.ValutesAdapter
 import com.example.cb_values_android.viewmodel.ValuteViewModel
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 
 class ListOfValutesFragment : Fragment() {
 
+    private val compositeDisposable = CompositeDisposable()
     private lateinit var code: String
     private lateinit var binding: FragmentListOfValutsBinding
     private lateinit var listOfValutes: ValuesJSON
@@ -34,7 +40,6 @@ class ListOfValutesFragment : Fragment() {
     ): View {
         binding = FragmentListOfValutsBinding.inflate(inflater)
 
-        startAnimation()
         bindObservers()
         bindSpinner()
         bindSwipe()
@@ -59,16 +64,12 @@ class ListOfValutesFragment : Fragment() {
     }
 
     private fun bindOneMinuteRefresh() {
-        lifecycleScope.launch{
-            while (true) {
-                withContext(Dispatchers.Main){
-                    viewModel.getValutesFromServer()
-                }
-                delay(60_000)
+        val some = Observable.create<Any?> {}
+            .buffer(60, TimeUnit.SECONDS)
+            .observeOn(Schedulers.io())
+            .subscribe {
+                viewModel.getValutesFromServer()
             }
-
-        }
-
     }
 
     private fun bindSwipe() = with(binding.swipeView){
@@ -104,35 +105,53 @@ class ListOfValutesFragment : Fragment() {
         binding.converterInFragment.spinnerToConvert.onItemSelectedListener = itemSelectedListener
     }
 
+    @SuppressLint("CheckResult")
     private fun bindObservers() {
-        viewModel.getValutesFromServer()
-        viewModel.listOfValutes.observe(viewLifecycleOwner) { response ->
-            if (response.isSuccessful and (response.body() != null)){
-                if (countOfBindRCview == 0){
-                    countOfBindRCview++
 
-                    listOfValutes = response.body()!!
-                    bindRcView()
-                    lifecycleScope.launch {
-                        delay(1500)
-                        withContext(Dispatchers.Main){
-                            turnOffStartAnimation()
+        viewModel.getValutesFromServer()
+        startAnimation()
+        val observable: Observable<ValuesJSON> = Observable.create { emitter ->
+            viewModel.listOfValutes.observe(viewLifecycleOwner) {
+                emitter.onNext(it)
+            }
+        }
+        observable
+            .observeOn(Schedulers.io())
+            .doOnNext { response ->
+                when (countOfBindRCview) {
+                    0 -> {
+                        countOfBindRCview++
+
+                        listOfValutes = response
+                        lifecycleScope.launch(Dispatchers.Main){
+                            bindRcView()
+                        }
+                        Thread.sleep(2200)
+                    }
+                    else -> {
+                        lifecycleScope.launch(Dispatchers.Main){
+                            (binding.rcViewValutes.adapter as ValutesAdapter).setNewValuteList(response)
                         }
                     }
-
-                } else {
-                    (binding.rcViewValutes.adapter as ValutesAdapter)
-                        .setNewValuteList(response.body()!!)
                 }
-
-            } else{
-                viewModel.getValutesFromServer()
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe{
+                turnOffStartAnimation()
             }
 
+        val list: Observable<String> = Observable.create { emitter ->
+            binding.converterInFragment.btConvertValute.setOnClickListener {
+                emitter.onNext(binding.converterInFragment.inputConvertValute.text.toString())
+            }
+
+            emitter.setCancellable {
+                binding.converterInFragment.btConvertValute.setOnClickListener(null)
+            }
         }
 
-        binding.converterInFragment.btConvertValute.setOnClickListener {
-            convertToValute()
+        list.subscribe{ query ->
+            convertToValute(query)
         }
 
     }
@@ -143,7 +162,7 @@ class ListOfValutesFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun convertToValute() {
+    private fun convertToValute(string: String) {
         val valueValute: Double = when(code){
             listOfValutes.Valute.AMD.CharCode -> listOfValutes.Valute.AMD.Value / listOfValutes.Valute.AMD.Nominal
             listOfValutes.Valute.AUD.CharCode -> listOfValutes.Valute.AUD.Value / listOfValutes.Valute.AUD.Nominal
@@ -183,7 +202,7 @@ class ListOfValutesFragment : Fragment() {
         if(binding.converterInFragment.inputConvertValute.text.isNotBlank()
             and binding.converterInFragment.inputConvertValute.text.isNotEmpty()) {
             binding.converterInFragment.txConvertedValute.text =
-                "${binding.converterInFragment.inputConvertValute.text.toString().toDouble() / valueValute} $code"
+                "${string.toDouble() / valueValute} $code"
         }
 
     }
