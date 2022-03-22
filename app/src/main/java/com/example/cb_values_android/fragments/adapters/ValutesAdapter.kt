@@ -14,180 +14,208 @@ class ValutesAdapter(valutes: ValuesJSON): RecyclerView.Adapter<ValutesAdapter.I
     class ItemViewHolder(private val binding: ItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bindValute(itemPosition: Int, listOfValutes: ValuesJSON) = with(binding){
+        fun bindValute(itemPosition: Int, listOfValutes: ValuesJSON) {
 
             when(itemPosition){
                 1 -> {
-                    txNameOfValute.text = listOfValutes.Valute.AMD.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.AMD.Value / listOfValutes.Valute.AMD.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.AMD.Previous / listOfValutes.Valute.AMD.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.AMD.Name, listOfValutes.Valute.AMD.Value / listOfValutes.Valute.AMD.Nominal, listOfValutes.Valute.AMD.Previous / listOfValutes.Valute.AMD.Nominal)
                 }
                 2 -> {
-                    txNameOfValute.text = listOfValutes.Valute.AUD.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.AUD.Value / listOfValutes.Valute.AUD.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.AUD.Previous / listOfValutes.Valute.AUD.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.AUD.Name, listOfValutes.Valute.AUD.Value / listOfValutes.Valute.AUD.Nominal,listOfValutes.Valute.AUD.Previous / listOfValutes.Valute.AUD.Nominal)
                 }
                 3 -> {
-                    txNameOfValute.text = listOfValutes.Valute.AZN.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.AZN.Value / listOfValutes.Valute.AZN.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.AZN.Previous / listOfValutes.Valute.AZN.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.AZN.Name,listOfValutes.Valute.AZN.Value / listOfValutes.Valute.AZN.Nominal,listOfValutes.Valute.AZN.Previous / listOfValutes.Valute.AZN.Nominal)
                 }
                 4 -> {
-                    txNameOfValute.text = listOfValutes.Valute.BGN.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.BGN.Value / listOfValutes.Valute.BGN.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.BGN.Previous / listOfValutes.Valute.BGN.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.BGN.Name,listOfValutes.Valute.BGN.Value / listOfValutes.Valute.BGN.Nominal,listOfValutes.Valute.BGN.Previous / listOfValutes.Valute.BGN.Nominal)
                 }
                 5 -> {
-                    txNameOfValute.text = listOfValutes.Valute.BRL.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.BRL.Value / listOfValutes.Valute.BRL.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.BRL.Previous / listOfValutes.Valute.BRL.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.BRL.Name
+                        ,listOfValutes.Valute.BRL.Value / listOfValutes.Valute.BRL.Nominal
+                        ,listOfValutes.Valute.BRL.Previous / listOfValutes.Valute.BRL.Nominal)
                 }
                 6 -> {
-                    txNameOfValute.text = listOfValutes.Valute.BYN.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.BYN.Value / listOfValutes.Valute.BYN.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.BYN.Previous / listOfValutes.Valute.BYN.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.BYN.Name
+                        ,listOfValutes.Valute.BYN.Value / listOfValutes.Valute.BYN.Nominal
+                        ,listOfValutes.Valute.BYN.Previous / listOfValutes.Valute.BYN.Nominal
+                    )
                 }
                 7 -> {
-                    txNameOfValute.text = listOfValutes.Valute.CAD.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.CAD.Value / listOfValutes.Valute.CAD.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.CAD.Previous / listOfValutes.Valute.CAD.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.CAD.Name
+                        ,listOfValutes.Valute.CAD.Value / listOfValutes.Valute.CAD.Nominal
+                        ,listOfValutes.Valute.CAD.Previous / listOfValutes.Valute.CAD.Nominal
+                    )
                 }
                 8 -> {
-                    txNameOfValute.text = listOfValutes.Valute.CHF.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.CHF.Value / listOfValutes.Valute.CHF.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.CHF.Previous / listOfValutes.Valute.CHF.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.CHF.Name
+                        ,listOfValutes.Valute.CHF.Value / listOfValutes.Valute.CHF.Nominal
+                        ,listOfValutes.Valute.CHF.Previous / listOfValutes.Valute.CHF.Nominal
+                    )
                 }
                 9 -> {
-                    txNameOfValute.text = listOfValutes.Valute.CNY.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.CNY.Value / listOfValutes.Valute.CNY.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.CNY.Previous / listOfValutes.Valute.CNY.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.CNY.Name
+                        ,listOfValutes.Valute.CNY.Value / listOfValutes.Valute.CNY.Nominal
+                        ,listOfValutes.Valute.CNY.Previous / listOfValutes.Valute.CNY.Nominal
+                    )
                 }
                 10 -> {
-                    txNameOfValute.text = listOfValutes.Valute.CZK.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.CZK.Value / listOfValutes.Valute.CZK.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.CZK.Previous / listOfValutes.Valute.CZK.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.CZK.Name
+                        ,listOfValutes.Valute.CZK.Value / listOfValutes.Valute.CZK.Nominal
+                        ,listOfValutes.Valute.CZK.Previous / listOfValutes.Valute.CZK.Nominal
+                    )
                 }
                 11 -> {
-                    txNameOfValute.text = listOfValutes.Valute.DKK.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.DKK.Value / listOfValutes.Valute.DKK.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.DKK.Previous / listOfValutes.Valute.DKK.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.DKK.Name
+                        ,listOfValutes.Valute.DKK.Value / listOfValutes.Valute.DKK.Nominal
+                        ,listOfValutes.Valute.DKK.Previous / listOfValutes.Valute.DKK.Nominal
+                    )
                 }
                 12 -> {
-                    txNameOfValute.text = listOfValutes.Valute.EUR.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.EUR.Value / listOfValutes.Valute.EUR.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.EUR.Previous / listOfValutes.Valute.EUR.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.EUR.Name
+                        ,listOfValutes.Valute.EUR.Value / listOfValutes.Valute.EUR.Nominal
+                        ,listOfValutes.Valute.EUR.Previous / listOfValutes.Valute.EUR.Nominal
+                    )
                 }
                 13 -> {
-                    txNameOfValute.text = listOfValutes.Valute.GBP.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.GBP.Value / listOfValutes.Valute.GBP.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.GBP.Previous / listOfValutes.Valute.GBP.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.GBP.Name
+                        ,listOfValutes.Valute.GBP.Value / listOfValutes.Valute.GBP.Nominal
+                        ,listOfValutes.Valute.GBP.Previous / listOfValutes.Valute.GBP.Nominal
+                    )
                 }
                 14 -> {
-                    txNameOfValute.text = listOfValutes.Valute.HKD.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.HKD.Value / listOfValutes.Valute.HKD.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.HKD.Previous / listOfValutes.Valute.HKD.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.HKD.Name
+                        ,listOfValutes.Valute.HKD.Value / listOfValutes.Valute.HKD.Nominal
+                        ,listOfValutes.Valute.HKD.Previous / listOfValutes.Valute.HKD.Nominal
+                    )
                 }
                 15 -> {
-                    txNameOfValute.text = listOfValutes.Valute.HUF.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.HUF.Value / listOfValutes.Valute.HUF.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.HUF.Previous / listOfValutes.Valute.HUF.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.HUF.Name
+                        ,listOfValutes.Valute.HUF.Value / listOfValutes.Valute.HUF.Nominal
+                        ,listOfValutes.Valute.HUF.Previous / listOfValutes.Valute.HUF.Nominal
+                    )
                 }
                 16 -> {
-                    txNameOfValute.text = listOfValutes.Valute.INR.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.INR.Value / listOfValutes.Valute.INR.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.INR.Previous / listOfValutes.Valute.INR.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.INR.Name
+                        ,listOfValutes.Valute.INR.Value / listOfValutes.Valute.INR.Nominal
+                        ,listOfValutes.Valute.INR.Previous / listOfValutes.Valute.INR.Nominal
+                    )
                 }
                 17 -> {
-                    txNameOfValute.text = listOfValutes.Valute.JPY.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.JPY.Value / listOfValutes.Valute.JPY.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.JPY.Previous / listOfValutes.Valute.JPY.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.JPY.Name
+                        ,listOfValutes.Valute.JPY.Value / listOfValutes.Valute.JPY.Nominal
+                        ,listOfValutes.Valute.JPY.Previous / listOfValutes.Valute.JPY.Nominal
+                    )
                 }
                 18 -> {
-                    txNameOfValute.text = listOfValutes.Valute.KGS.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.KGS.Value / listOfValutes.Valute.KGS.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.KGS.Previous / listOfValutes.Valute.KGS.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.KGS.Name
+                        ,listOfValutes.Valute.KGS.Value / listOfValutes.Valute.KGS.Nominal
+                        ,listOfValutes.Valute.KGS.Previous / listOfValutes.Valute.KGS.Nominal
+                    )
                 }
                 19 -> {
-                    txNameOfValute.text = listOfValutes.Valute.KRW.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.KRW.Value / listOfValutes.Valute.KRW.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.KRW.Previous / listOfValutes.Valute.KRW.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.KRW.Name
+                        ,listOfValutes.Valute.KRW.Value / listOfValutes.Valute.KRW.Nominal
+                        ,listOfValutes.Valute.KRW.Previous / listOfValutes.Valute.KRW.Nominal
+                    )
                 }
                 20 -> {
-                    txNameOfValute.text = listOfValutes.Valute.KZT.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.KZT.Value / listOfValutes.Valute.KZT.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.KZT.Previous / listOfValutes.Valute.KZT.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.KZT.Name
+                        ,listOfValutes.Valute.KZT.Value / listOfValutes.Valute.KZT.Nominal
+                        ,listOfValutes.Valute.KZT.Previous / listOfValutes.Valute.KZT.Nominal
+                    )
                 }
                 21 -> {
-                    txNameOfValute.text = listOfValutes.Valute.MDL.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.MDL.Value / listOfValutes.Valute.MDL.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.MDL.Previous / listOfValutes.Valute.MDL.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.MDL.Name
+                        ,listOfValutes.Valute.MDL.Value / listOfValutes.Valute.MDL.Nominal
+                        ,listOfValutes.Valute.MDL.Previous / listOfValutes.Valute.MDL.Nominal
+                    )
                 }
                 22 -> {
-                    txNameOfValute.text = listOfValutes.Valute.NOK.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.NOK.Value / listOfValutes.Valute.NOK.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.NOK.Previous / listOfValutes.Valute.NOK.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.NOK.Name
+                        ,listOfValutes.Valute.NOK.Value / listOfValutes.Valute.NOK.Nominal
+                        ,listOfValutes.Valute.NOK.Previous / listOfValutes.Valute.NOK.Nominal
+                    )
                 }
                 23 -> {
-                    txNameOfValute.text = listOfValutes.Valute.PLN.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.PLN.Value / listOfValutes.Valute.PLN.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.PLN.Previous / listOfValutes.Valute.PLN.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.PLN.Name
+                        ,listOfValutes.Valute.PLN.Value / listOfValutes.Valute.PLN.Nominal
+                        ,listOfValutes.Valute.PLN.Previous / listOfValutes.Valute.PLN.Nominal
+                    )
                 }
                 24-> {
-                    txNameOfValute.text = listOfValutes.Valute.RON.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.RON.Value / listOfValutes.Valute.RON.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.RON.Previous / listOfValutes.Valute.RON.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.RON.Name
+                        ,listOfValutes.Valute.RON.Value / listOfValutes.Valute.RON.Nominal
+                        ,listOfValutes.Valute.RON.Previous / listOfValutes.Valute.RON.Nominal
+                    )
                 }
                 25-> {
-                    txNameOfValute.text = listOfValutes.Valute.SEK.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.SEK.Value / listOfValutes.Valute.SEK.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.SEK.Previous / listOfValutes.Valute.SEK.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.SEK.Name
+                        ,listOfValutes.Valute.SEK.Value / listOfValutes.Valute.SEK.Nominal
+                        ,listOfValutes.Valute.SEK.Previous / listOfValutes.Valute.SEK.Nominal
+                    )
                 }
                 26-> {
-                    txNameOfValute.text = listOfValutes.Valute.SGD.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.SGD.Value / listOfValutes.Valute.SGD.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.SGD.Previous / listOfValutes.Valute.SGD.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.SGD.Name
+                        ,listOfValutes.Valute.SGD.Value / listOfValutes.Valute.SGD.Nominal
+                        ,listOfValutes.Valute.SGD.Previous / listOfValutes.Valute.SGD.Nominal
+                    )
                 }
                 27-> {
-                    txNameOfValute.text = listOfValutes.Valute.TJS.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.TJS.Value / listOfValutes.Valute.TJS.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.TJS.Previous / listOfValutes.Valute.TJS.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.TJS.Name
+                        ,listOfValutes.Valute.TJS.Value / listOfValutes.Valute.TJS.Nominal
+                        ,listOfValutes.Valute.TJS.Previous / listOfValutes.Valute.TJS.Nominal
+                    )
                 }
                 28-> {
-                    txNameOfValute.text = listOfValutes.Valute.TMT.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.TMT.Value / listOfValutes.Valute.TMT.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.TMT.Previous / listOfValutes.Valute.TMT.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.TMT.Name
+                        ,listOfValutes.Valute.TMT.Value / listOfValutes.Valute.TMT.Nominal
+                        ,listOfValutes.Valute.TMT.Previous / listOfValutes.Valute.TMT.Nominal
+                    )
                 }
                 29-> {
-                    txNameOfValute.text = listOfValutes.Valute.TRY.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.TRY.Value / listOfValutes.Valute.TRY.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.TRY.Previous / listOfValutes.Valute.TRY.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.TRY.Name
+                        ,listOfValutes.Valute.TRY.Value / listOfValutes.Valute.TRY.Nominal
+                        ,listOfValutes.Valute.TRY.Previous / listOfValutes.Valute.TRY.Nominal
+                    )
                 }
                 30-> {
-                    txNameOfValute.text = listOfValutes.Valute.UAH.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.UAH.Value / listOfValutes.Valute.UAH.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.UAH.Previous / listOfValutes.Valute.UAH.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.UAH.Name
+                        ,listOfValutes.Valute.UAH.Value / listOfValutes.Valute.UAH.Nominal
+                        ,listOfValutes.Valute.UAH.Previous / listOfValutes.Valute.UAH.Nominal
+                    )
                 }
                 0-> {
-                    txNameOfValute.text = listOfValutes.Valute.USD.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.USD.Value / listOfValutes.Valute.USD.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.USD.Previous / listOfValutes.Valute.USD.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.USD.Name
+                        ,listOfValutes.Valute.USD.Value / listOfValutes.Valute.USD.Nominal
+                        ,listOfValutes.Valute.USD.Previous / listOfValutes.Valute.USD.Nominal
+                    )
                 }
                 32-> {
-                    txNameOfValute.text = listOfValutes.Valute.UZS.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.UZS.Value / listOfValutes.Valute.UZS.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.UZS.Previous / listOfValutes.Valute.UZS.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.UZS.Name
+                        ,listOfValutes.Valute.UZS.Value / listOfValutes.Valute.UZS.Nominal
+                        ,listOfValutes.Valute.UZS.Previous / listOfValutes.Valute.UZS.Nominal
+                    )
                 }
                 33-> {
-                    txNameOfValute.text = listOfValutes.Valute.XDR.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.XDR.Value / listOfValutes.Valute.XDR.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.XDR.Previous / listOfValutes.Valute.XDR.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.XDR.Name
+                        ,listOfValutes.Valute.XDR.Value / listOfValutes.Valute.XDR.Nominal
+                        ,listOfValutes.Valute.XDR.Previous / listOfValutes.Valute.XDR.Nominal
+                    )
                 }
                 31-> {
-                    txNameOfValute.text = listOfValutes.Valute.ZAR.Name
-                    txCurrentValute.text = "${listOfValutes.Valute.ZAR.Value / listOfValutes.Valute.ZAR.Nominal} Rubles"
-                    txPreviousValute.text = "${listOfValutes.Valute.ZAR.Previous / listOfValutes.Valute.ZAR.Nominal} Rubles"
+                    bindText(listOfValutes.Valute.ZAR.Name
+                        ,listOfValutes.Valute.ZAR.Value / listOfValutes.Valute.ZAR.Nominal
+                        ,listOfValutes.Valute.ZAR.Previous / listOfValutes.Valute.ZAR.Nominal
+                    )
                 }
             }
+        }
+
+        @SuppressLint("SetTextI18n")
+        private fun bindText(name: String, d: Double, d1: Double) = with(binding){
+            txNameOfValute.text = name
+            txCurrentValute.text = "%.2f Rubles".format(d)
+            txPreviousValute.text = "%.2f Rubles".format(d1)
         }
 
     }

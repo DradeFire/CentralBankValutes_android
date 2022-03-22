@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="@string/rub"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,10 +22,10 @@
         android:id="@+id/txConvertedValute"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:textSize="18sp"
-        android:gravity="center"
         android:layout_marginTop="8dp"
+        android:background="#F6D2D2"
+        android:gravity="center"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btConvertValute"
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/inputConvertValute"
+        app:layout_constraintEnd_toStartOf="@+id/btConvertValute"
         app:layout_constraintStart_toEndOf="@+id/inputConvertValute"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +51,5 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputConvertValute"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinnerToConvert"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

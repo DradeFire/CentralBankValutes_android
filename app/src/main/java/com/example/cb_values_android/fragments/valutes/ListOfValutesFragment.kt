@@ -22,6 +22,7 @@ import kotlinx.coroutines.*
 
 class ListOfValutesFragment : Fragment() {
 
+    private var isStart: Boolean = true
     private lateinit var code: String
     private lateinit var binding: FragmentListOfValutsBinding
     private lateinit var listOfValutes: ValuesJSON
@@ -34,7 +35,17 @@ class ListOfValutesFragment : Fragment() {
     ): View {
         binding = FragmentListOfValutsBinding.inflate(inflater)
 
-        startAnimation()
+        if(viewModel.isStart == null && isStart)
+            startAnimation()
+        else
+            binding.startViewWithAnimation.visibility = View.GONE
+
+        if(viewModel.willConvert != null)
+            binding.converterInFragment.inputConvertValute.setText(viewModel.willConvert)
+
+        if(viewModel.converted != null)
+            binding.converterInFragment.txConvertedValute.text = viewModel.converted
+
         bindObservers()
         bindSpinner()
         bindSwipe()
@@ -42,6 +53,8 @@ class ListOfValutesFragment : Fragment() {
 
         return binding.root
     }
+
+
 
     private fun startAnimation(){
         val animScaleX = ObjectAnimator
@@ -183,7 +196,7 @@ class ListOfValutesFragment : Fragment() {
         if(binding.converterInFragment.inputConvertValute.text.isNotBlank()
             and binding.converterInFragment.inputConvertValute.text.isNotEmpty()) {
             binding.converterInFragment.txConvertedValute.text =
-                "${binding.converterInFragment.inputConvertValute.text.toString().toDouble() / valueValute} $code"
+                "%.4f $code".format(binding.converterInFragment.inputConvertValute.text.toString().toDouble() / valueValute)
         }
 
     }
@@ -191,6 +204,13 @@ class ListOfValutesFragment : Fragment() {
     private fun bindRcView() = with(binding.rcViewValutes) {
         adapter = ValutesAdapter(listOfValutes)
         layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    override fun onDestroyView() {
+        viewModel.isStart = false
+        viewModel.willConvert = binding.converterInFragment.inputConvertValute.text.toString()
+        viewModel.converted = binding.converterInFragment.txConvertedValute.text.toString()
+        super.onDestroyView()
     }
 
 }

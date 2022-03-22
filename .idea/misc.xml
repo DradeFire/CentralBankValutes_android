@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android_Projects/CentralBankValutes_android/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Android_Projects/CentralBankValutes_android/app/src/main/res/layout/converter_ui.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android_Projects/CentralBankValutes_android/app/src/main/res/layout/fragment_list_of_valuts.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ArtemTest/AndroidStudioProjects/CB_Values_android/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/ArtemTest/AndroidStudioProjects/CB_Values_android/app/src/main/res/layout/converter_ui.xml" value="0.33" />
         <entry key="..\:/Users/ArtemTest/AndroidStudioProjects/CB_Values_android/app/src/main/res/layout/fragment_blank.xml" value="0.1641337386018237" />

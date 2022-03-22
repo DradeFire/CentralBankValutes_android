@@ -10,6 +10,11 @@ import retrofit2.Response
 
 class ValuteViewModel: ViewModel() {
 
+    var isStart: Boolean? = null
+    var willConvert: String? = null
+    var converted: String? = null
+
+
     val listOfValutes: MutableLiveData<Response<ValuesJSON>> = MutableLiveData()
 
     fun getValutesFromServer(){
